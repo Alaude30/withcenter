@@ -1,32 +1,48 @@
 var index = 0;
-showSlide(index);
-
-function controlSlide(n) {
-    showSlide(index += n);
-}
+var sec = 5000;
+var interval = setInterval(showSlide, sec);
+var slides = document.querySelectorAll(".slide-item");
+var indicators = document.querySelectorAll(".dot");
 
 function currentSlide(n) {
-    showSlide(index = n);
+    clearInterval(interval);
+    index = n-1;
+    reset();
+    slides[index].className = "slide-item show";
+    indicators[index].className = "dot active";
+    interval = setInterval(showSlide, sec);
+    index++;
+    console.log("index",index);
+}
+
+function reset() {
+    if (index < 0) {index = slides.length - 1}
+    if (index > slides.length - 1) {index = 0}
+    for (var i = 0; i < slides.length; i++) {
+        slides[i].className = "slide-item";
+        indicators[i].className = "dot";
+    }
 }
 
 function showSlide() {
-    var i;
-    var slides = document.getElementsByClassName("slide-item");
-    var items = document.getElementsByClassName("dot");
+    reset();
+    slides[index].className = "slide-item show";
+    indicators[index].className = "dot active";
     index++;
-    if (index > slides.length) {
-        index = 1;
-    }
-    if (index < 1) {
-        index = slides.length;
-    }
-    for (i = 0; i < slides.length; i++) {
-        slides[i].className = slides[i].className.replace(" slide", "");
-    }
-    for (i = 0; i < items.length; i++) {
-        items[i].className = items[i].className.replace(" active", "");
-    }
-    slides[index-1].className += " slide";
-    items[index-1].className += " active";
-    setTimeout(showSlide, 5000);
+    console.log("index",index);
 }
+
+function slideControl(n) {
+    clearInterval(interval);
+    index += n-1;
+    console.log("sc",index);
+    reset();
+    slides[index].className = "slide-item show";
+    indicators[index].className = "dot active";
+    interval = setInterval(showSlide, sec);
+    index++;
+    console.log("index",index);
+}
+
+
+showSlide();
