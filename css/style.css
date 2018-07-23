@@ -96,14 +96,13 @@ ul {
 	position: absolute;
 	top: 48%;
 	padding: 20px;
-	color: transparent;
+	background: #444;
+	color: #bbb;
 	cursor: pointer;
 }
 
 .next:hover, .prev:hover {
 	box-shadow: 0 0 5px 2px #bbb;
-	background: #444;
-	color: #bbb;
 	transition: 0.5s;
 }
 
