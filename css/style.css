@@ -7,7 +7,7 @@ ul {
 	margin: 0;
 	padding: 0;
 	list-style: none;
-	z-index: 1;
+	z-index: 3;
 }
 
 /*navbar*/
@@ -99,6 +99,7 @@ ul {
 	background: #444;
 	color: #bbb;
 	cursor: pointer;
+	z-index: 2;
 }
 
 .next:hover, .prev:hover {
@@ -116,6 +117,16 @@ ul {
 	-o-animation: slide 0.5s;
 	animation: slide 0.5s;
 	transition: 0.5s;
+	z-index: 1;
+}
+
+.out {
+	display: block !important;
+	-webkit-animation: slide-out 0.5s;
+	-o-animation: slide-out 0.5s;
+	animation: slide-out 0.5s;
+	transition: 0.5s;
+	z-index: 0;
 }
 
 .slide-container {
@@ -149,4 +160,9 @@ ul {
 @keyframes slide {
 	0% {transform: translateX(100%);}
 	100% {transform: none;}
+}
+
+@keyframes slide-out {
+	0% {transform: none;}
+	100% {transform: translateX(-100);}
 }

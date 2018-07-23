@@ -3,14 +3,17 @@ var sec = 5000;
 var interval = setInterval(showSlide, sec);
 var slides = document.querySelectorAll(".slide-item");
 var indicators = document.querySelectorAll(".dot");
+var last = slides.length-1;
 
 function currentSlide(n) {
     clearInterval(interval);
     index = n-1;
     reset();
+    slides[last].className = "slide-item out";
     slides[index].className = "slide-item show";
     indicators[index].className = "dot active";
     interval = setInterval(showSlide, sec);
+    last = index;
     index++;
     console.log("index",index);
 }
@@ -26,8 +29,10 @@ function reset() {
 
 function showSlide() {
     reset();
+    slides[last].className = "slide-item out";
     slides[index].className = "slide-item show";
     indicators[index].className = "dot active";
+    last = index;
     index++;
     console.log("index",index);
 }
@@ -37,9 +42,11 @@ function slideControl(n) {
     index += n-1;
     console.log("sc",index);
     reset();
+    slides[last].className = "slide-item out";
     slides[index].className = "slide-item show";
     indicators[index].className = "dot active";
     interval = setInterval(showSlide, sec);
+    last = index;
     index++;
     console.log("index",index);
 }
